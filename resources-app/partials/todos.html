@@ -1,0 +1,23 @@
+<section>
+    <div class="content-wrap">
+        <div id="todos" class="clearfix text-center">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-center">S no.</th>
+                            <th class="text-center">Title</th>
+                            <th class="text-center">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="(key, value) in todosResult">
+                            <td>{{value.id}}</td>
+                            <td>{{value.title}}</td>
+                            <td>{{(value.completed) ? "Completed" : "Incomplete"}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

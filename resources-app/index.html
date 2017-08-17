@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="artistApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Resources</title>
+    <base href="/">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="app.css">
+
+    <!-- including scripts -->
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-state/angular-ui-router.js"></script>
+
+    <script src="js/controllers.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+
+    <!-- header -->
+    <header>
+        <nav class="navbar">
+            <div class="container-fluid">
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <span class="heading">
+                        <h1><a href="/">Resources</a></h1>
+                    </span>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+     </header>
+
+    <ui-view></ui-view>
+
+
+     <!-- footer -->
+     <footer>
+         <p class="text-center">Copyright &copy; Newput 2017</p>
+     </footer>
+
+</body>
+</html>

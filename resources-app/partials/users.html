@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="content-wrap">
+        <div id="users">
+            <p><b>Name:</b> {{userDetail.name}}</p>
+            <p><b>Username:</b> {{userDetail.username}}</p>
+            <p><b>Email:</b> {{userDetail.email}}</p>
+            <p><b>Address:</b> {{userDetail.address.street + ", " + userDetail.address.city}}</p>
+            <p><b>Phone:</b> {{userDetail.phone}}</p>
+            <p><b>Website:</b> {{userDetail.website}}</p>
+            <p><b>Company:</b> {{userDetail.company.name}}</p>
+        </div>
+
+        <section>
+            <div class="content-wrap">
+                <div class="row clearfix">
+                    <div class="col-sm-4">
+                        <div class="posts bg-winter flex-div">
+                            <a ui-sref="posts({ userId: userDetail.id })">
+                                <h2>Posts</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="comments bg-spring flex-div">
+                            <a ui-sref="todos({ userId: userDetail.id })">
+                                <h2>Todos</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="albums bg-winter flex-div">
+                            <a ui-sref="albums({ userId: userDetail.id })">
+                                <h2>Albums</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
