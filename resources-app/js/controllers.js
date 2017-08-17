@@ -1,66 +1,98 @@
 'use strict';
 
 (function(){
-    angular.module('resourceAppControllers', ['resourceAppServices'])
+    angular.module('artistAppControllers', [])
 
-        .controller('homeCtrl', [ '$scope', 'resourceService', function($scope, resourceService) {
+        .controller('homeCtrl', [ '$scope', '$http', function($scope, $http) {
             $scope.usersList = {};
-            resourceService.getResource("users").success(function(data){
-                $scope.usersList = angular.fromJson(data);
-            });
+            $scope.getUsers = function() {
+
+                $http.get('https://jsonplaceholder.typicode.com/users').success(
+                    function(data) {
+                        $scope.usersList = angular.fromJson(data);
+                    });
+            };
+            $scope.getUsers();
+
         }])
 
-        .controller('userCtrl', [ '$scope', 'resourceService', '$stateParams', function($scope, resourceService, $stateParams) {
+        .controller('userCtrl', [ '$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
             $scope.userDetail = {};
-            resourceService.getResource("users/" + $stateParams.userId).success(function(data){
-                $scope.userDetail = angular.fromJson(data);
-            });
+            $scope.getUserDetails = function() {
+                $http.get('https://jsonplaceholder.typicode.com/users/' + $stateParams.userId).success(
+                    function(data) {
+                        $scope.userDetail = angular.fromJson(data);
+                    });
+            };
+            $scope.getUserDetails();
+
         }])
 
-        .controller('postsCtrl', [ '$scope', 'resourceService', '$stateParams', function($scope, resourceService, $stateParams) {
+        .controller('postsCtrl', [ '$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
             $scope.postsResult = {};
 
-            resourceService.getResource("posts?userId=" + $stateParams.userId).success(function(data){
-                $scope.postsResult = angular.fromJson(data);
-            });
+            $scope.getPosts = function() {
+
+                $http.get('https://jsonplaceholder.typicode.com/posts?userId=' + $stateParams.userId).success(
+                    function(data) {
+                        $scope.postsResult = angular.fromJson(data);
+                    });
+            };
+            $scope.getPosts();
 
             $scope.showModel = function(postId) {
                 $scope.singlePost  = {};
                 $scope.commentsResult = {};
 
-                resourceService.getResource("comments/?postId=" + postId).success(function(data){
-                    $scope.commentsResult = angular.fromJson(data);
-                });
+                $http.get('https://jsonplaceholder.typicode.com/comments/?postId=' + postId).success(
+                    function(data) {
+                        $scope.commentsResult = angular.fromJson(data);
+                    });
 
-                resourceService.getResource("posts/" + postId).success(function(data){
-                    $scope.singlePost = angular.fromJson(data);
-                });
+                $http.get('https://jsonplaceholder.typicode.com/posts/' + postId).success(
+                    function(data) {
+                        $scope.singlePost = angular.fromJson(data);
+                    });
             };
+
         }])
 
-        .controller('albumsCtrl', [ '$scope', 'resourceService', '$stateParams', function($scope, resourceService, $stateParams) {
+        .controller('albumsCtrl', [ '$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
             $scope.userId = $stateParams.userId;
             $scope.albumResult = {};
+            $scope.getAlbums = function() {
 
-            resourceService.getResource("user/" + $scope.userId + "/albums/").success(function(data){
-                $scope.albumResult = angular.fromJson(data);
-            });
+                $http.get('https://jsonplaceholder.typicode.com/user/' + $scope.userId + '/albums/').success(
+                    function(data) {
+                        $scope.albumResult = angular.fromJson(data);
+                    });
+            };
+            $scope.getAlbums();
         }])
 
-        .controller('photosCtrl', [ '$scope', 'resourceService', '$stateParams', function($scope, resourceService, $stateParams) {
+        .controller('photosCtrl', [ '$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
             $scope.userId = $stateParams.userId;
             $scope.photosResult = {};
+            $scope.getPhotos = function() {
 
-            resourceService.getResource("albums/" + $stateParams.albumId + "/photos/").success(function(data) {
-                $scope.photosResult = angular.fromJson(data);
-            });
+                $http.get('https://jsonplaceholder.typicode.com/albums/' + $stateParams.albumId + '/photos/').success(
+                    function(data) {
+                        $scope.photosResult = angular.fromJson(data);
+                    });
+            };
+            $scope.getPhotos();
         }])
 
-        .controller('todosCtrl', [ '$scope', 'resourceService', '$stateParams', function($scope, resourceService, $stateParams) {
+        .controller('todosCtrl', [ '$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
             $scope.todosResult = {};
+            $scope.getTodos = function() {
 
-            resourceService.getResource("user/" + $stateParams.userId + "/todos/").success(function(data) {
-                $scope.todosResult = angular.fromJson(data);
-            });
+                $http.get('https://jsonplaceholder.typicode.com/user/' + $stateParams.userId + '/todos/').success(
+                    function(data) {
+                        $scope.todosResult = angular.fromJson(data);
+                    });
+            };
+            $scope.getTodos();
         }]);
+
 })();

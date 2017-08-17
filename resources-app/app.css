@@ -11,7 +11,7 @@ header, footer {
 header h1 {
     display: inline-block;
     margin-top: 0;
-    padding: 20px;
+    padding-top: 20px;
 }
 
 ul.navbar-right {
