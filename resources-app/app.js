@@ -1,12 +1,9 @@
 'use strict';
 
-
-// var demoModule = angular.module('artistApp', ['']);
-
     // Declare app level module which depends on views, and components
-    angular.module('artistApp', [
+    angular.module('resourceApp', [
         'ui.router',
-        'artistAppControllers'
+        'resourceAppControllers'
     ])
       .config([
         '$stateProvider',
@@ -52,5 +49,5 @@
 
             $urlRouterProvider.otherwise( '/');
 
-            $locationProvider.html5Mode(true).hashPrefix('');
+            $locationProvider.html5Mode(true);
     }]);
