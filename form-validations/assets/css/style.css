@@ -1,0 +1,46 @@
+div.form-section {
+  background-color: #FFFC33;
+  border-bottom: 1px solid #FFFC33;
+}
+div.form-fields {
+  background-color: #FEFBC2;
+  margin-bottom: 18px;
+  margin-left: 18px;
+  padding: 1% 10% 2% 0;
+  width: 87%;
+}
+a.help-tip {
+  color: aliceblue;
+  background-color: blue;
+  margin: -4px;
+  padding: 0px 6px 0px 6px;
+}
+.low {
+  background-color: red;
+  padding: 10px;
+}
+.high {
+  background-color: purple;
+  padding: 10px;
+}
+p {
+  margin-bottom: 0px;
+  padding-left: 4%;
+}
+label {
+  display: inline-block;
+  width: 16%;
+  text-align: right;
+}
+input[type="number"] {
+  width: 30px;
+}
+label[for="address"] {
+  float: left;
+}
+[class^="error-"], .asterisk {
+    color: red;
+}
+#preview {
+    width: 200px;
+}

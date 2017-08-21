@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration form</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body ng-app="formValidations">
+    <div class="heading-title">
+        <h1>Please Enter Your Details For Registration!</h1>
+    </div>
+    <form class="customForm" name="customForm" novalidate>
+        <div class="form-section">
+            <p>Your Face</p>
+            <div class="form-fields">
+                <p>
+                    <label for="file-select">Your image<span class="asterisk">*</span>:</label>
+                    <input type="file">
+                    <span class="error-file"></span>
+                </p>
+                <p>
+                    <label for="image-preview">Image preview:</label>
+                    <img id="preview" src="" alt="Preview">
+                </p>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <p>Your General Details</p>
+            <div class="form-fields">
+                <p>
+                    <label for="name">Name<span class="asterisk">*</span>:</label>
+                    <input type="text" placeholder="Enter full name">
+                    <span class="error-name"></span>
+                </p>
+                <p>
+                    <label for="gender">Gender<span class="asterisk">*</span>:</label>
+                    <input type="radio"> Male
+                    <input type="radio"> Female
+                    <span class="error-gender"></span>
+                </p>
+                <p>
+                    <label for="age">Age<span class="asterisk">*</span>:</label>
+                    <input type="number">
+                    <span class="error-age"></span>
+                </p>
+                <p>
+                    <label for="date">Date of birth<span class="asterisk">*</span>:</label>
+                    <input type="date" placeholder="dd/mm/yyyy">
+                    <span class="error-dob"></span>
+                </p>
+                <p>
+                    <label for="favcolor">Favourite color:</label>
+                    <input type="color">
+                </p>
+                <p>
+                    <label for="country">Which country<span class="asterisk">*</span>:</label>
+                    <select>
+                        <option value="">Select country</option>
+                        <option value="ind">India</option>
+                        <option value="aus">Australia</option>
+                        <option value="nz">New Zealand</option>
+                        <option value="gm">Germany</option>
+                    </select>
+                    <a href="#" title="Select a country from which you belong." class="help-tip">&quest;</a>
+                    <span class="error-country"></span>
+                </p>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <p>Your Indicators</p>
+            <div class="form-fields">
+                <p>
+                    <label for="height">Height:</label>
+                    <span class="low">Short</span>
+                    <input type="range">
+                    <span class="high">Tall</span>
+                </p>
+                <p>
+                    <label for="salary">Salary:</label>
+                    <span class="low">Poor</span>
+                    <input type="range">
+                    <span class="high">Rich</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <p>Your Contact Information</p>
+            <div class="form-fields">
+                <p>
+                    <label for="email">Email<span class="asterisk">*</span>:</label>
+                    <input type="email">
+                    <span class="error-email"></span>
+                </p>
+                <p>
+                    <label for="mobile">Mobile<span class="asterisk">*</span>:</label>
+                    <input type="text">
+                    <span class="error-mobile"></span>
+                </p>
+                <p>
+                    <label for="address">Address:</label>
+                    <textarea rows="3" cols="50" name="address"></textarea>
+                </p>
+                <p>
+                    <label for="contact">Method to contact you<span class="asterisk">*</span>:</label>
+                    <input type="checkbox">
+                    <span>Email</span>
+                    <input type="checkbox">
+                    <span>Whatsapp</span>
+                    <input type="checkbox">
+                    <span>In-app chat</span>
+                    <span class="error-contact"></span>
+                </p>
+            </div>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- including scripts -->
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-state/angular-ui-router.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
