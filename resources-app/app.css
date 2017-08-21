@@ -18,6 +18,10 @@ ul.navbar-right {
     padding-top: 20px;
 }
 
+.container {
+    min-height: 500px;
+}
+
 .bg-spring {
     background-image: url("../images/spring.jpg");
     background-size: contain;
