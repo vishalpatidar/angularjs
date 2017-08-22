@@ -6,22 +6,23 @@
     <title>Registration form</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body ng-app="formValidations">
+<body ng-app="formValidations" ng-controller="validateCtrl">
     <div class="heading-title">
         <h1>Please Enter Your Details For Registration!</h1>
     </div>
-    <form class="customForm" name="customForm" novalidate>
+    <form class="customForm" name="form" novalidate>
         <div class="form-section">
             <p>Your Face</p>
             <div class="form-fields">
                 <p>
                     <label for="file-select">Your image<span class="asterisk">*</span>:</label>
-                    <input type="file">
-                    <span class="error-file"></span>
+                    <input type="file" id="file" class="input-text" ngf-change="onChange($files)" ngf-select ng-model="user.image" name="image" accept="image/png, image/jpeg, image/jpg" />
+
+                    <span class="error"></span>
                 </p>
                 <p>
                     <label for="image-preview">Image preview:</label>
-                    <img id="preview" src="" alt="Preview">
+                    <img ng-if="isImage(fileExt)" ngf-src="user.image[0]" alt="Preview" class="thumb">
                 </p>
             </div>
         </div>
@@ -31,32 +32,41 @@
             <div class="form-fields">
                 <p>
                     <label for="name">Name<span class="asterisk">*</span>:</label>
-                    <input type="text" placeholder="Enter full name">
-                    <span class="error-name"></span>
+                    <input type="text" name="name" ng-model="user.name" placeholder="Enter full name" required="" ng-pattern="/^[a-zA-Z ]*$/">
+                    <span ng-show="form.$submitted || form.name.$touched" class="error">
+                        <span ng-show="form.name.$error.required">Please enter your name!</span>
+                        <span ng-show="form.name.$error.pattern">Please enter alphabets and spaces only!</span>
+                    </span>
                 </p>
                 <p>
                     <label for="gender">Gender<span class="asterisk">*</span>:</label>
-                    <input type="radio"> Male
-                    <input type="radio"> Female
-                    <span class="error-gender"></span>
+                    <input type="radio" name="gender" ng-model="user.gender" value="male" ng-required="!user.gender"> Male
+                    <input type="radio" name="gender" ng-model="user.gender" value="female" ng-required="!user.gender"> Female
+                    <span class="error" ng-show="form.$submitted && form.gender.$error.required">Please select your gender!</span>
                 </p>
                 <p>
                     <label for="age">Age<span class="asterisk">*</span>:</label>
-                    <input type="number">
-                    <span class="error-age"></span>
+                    <input type="number" name="age" ng-model="user.age" required="" min="10">
+                    <span ng-show="form.$submitted || form.age.$touched" class="error">
+                        <span ng-show="form.age.$error.required" class="error-age">Please enter your age!</span>
+                        <span ng-show="form.age.$error.min" class="error-age">Please enter age above 10!</span>
+                    </span>
                 </p>
                 <p>
                     <label for="date">Date of birth<span class="asterisk">*</span>:</label>
-                    <input type="date" placeholder="dd/mm/yyyy">
-                    <span class="error-dob"></span>
+                    <input type="date" name="dob" ng-model="user.dob" placeholder="dd/mm/yyyy" required>
+                    <span class="error" ng-show="form.$submitted || form.dob.$touched">
+                        <span ng-show="form.dob.$error.required">Please enter your DOB!</span>
+                        <span ng-show="form.dob.$error.date">Please enter a valid DOB!</span>
+                    </span>
                 </p>
                 <p>
                     <label for="favcolor">Favourite color:</label>
-                    <input type="color">
+                    <input type="color" name="color">
                 </p>
                 <p>
                     <label for="country">Which country<span class="asterisk">*</span>:</label>
-                    <select>
+                    <select ng-model="user.country" name="country" required>
                         <option value="">Select country</option>
                         <option value="ind">India</option>
                         <option value="aus">Australia</option>
@@ -64,7 +74,9 @@
                         <option value="gm">Germany</option>
                     </select>
                     <a href="#" title="Select a country from which you belong." class="help-tip">&quest;</a>
-                    <span class="error-country"></span>
+                    <span class="error" ng-show="form.$submitted || form.country.$touched">
+                        <span ng-show="form.country.$error.required">Please select a country!</span>
+                    </span>
                 </p>
             </div>
         </div>
@@ -75,14 +87,16 @@
                 <p>
                     <label for="height">Height:</label>
                     <span class="low">Short</span>
-                    <input type="range">
-                    <span class="high">Tall</span>
+                    <input type="range" name="height" ng-model="user.height">
+                    <span class="high">Tall&nbsp;</span>
+                    <span>{{user.height | height }}</span>
                 </p>
                 <p>
                     <label for="salary">Salary:</label>
-                    <span class="low">Poor</span>
-                    <input type="range">
+                    <span class="low">Poor&nbsp;</span>
+                    <input type="range" name="salary" ng-model="user.salary">
                     <span class="high">Rich</span>
+                    <span>{{user.salary | salary | currency}}</span>
                 </p>
             </div>
         </div>
@@ -92,13 +106,19 @@
             <div class="form-fields">
                 <p>
                     <label for="email">Email<span class="asterisk">*</span>:</label>
-                    <input type="email">
-                    <span class="error-email"></span>
+                    <input type="email" name="email" ng-model="user.email" required>
+                    <span class="error" ng-show="form.$submitted || form.email.$touched">
+                        <span ng-show="form.email.$error.required">Please enter your email!</span>
+                        <span ng-show="form.email.$error.email">Please enter a valid email!</span>
+                    </span>
                 </p>
                 <p>
-                    <label for="mobile">Mobile<span class="asterisk">*</span>:</label>
-                    <input type="text">
-                    <span class="error-mobile"></span>
+                    <label for="mobile">Mobile<span class="asterisk">*</span>: +91</label>
+                    <input type="text" name="mobile" ng-model="user.mobile" size="10" ng-pattern="/^[0-9]{10,10}$/" required>
+                    <span class="error" ng-show="form.$submitted || form.mobile.$touched">
+                        <span ng-show="form.mobile.$error.required">Please enter your mobile number!</span>
+                        <span ng-show="form.mobile.$error.pattern">Please enter a valid mobile number(10 digits)!</span>
+                    </span>
                 </p>
                 <p>
                     <label for="address">Address:</label>
@@ -106,24 +126,24 @@
                 </p>
                 <p>
                     <label for="contact">Method to contact you<span class="asterisk">*</span>:</label>
-                    <input type="checkbox">
+                    <input type="checkbox" name="contactEmail" ng-model="user.contact" required>
                     <span>Email</span>
-                    <input type="checkbox">
+                    <input type="checkbox" name="contactWa" ng-model="user.contact" required>
                     <span>Whatsapp</span>
-                    <input type="checkbox">
+                    <input type="checkbox" name="contactInapp" ng-model="user.contact" required>
                     <span>In-app chat</span>
-                    <span class="error-contact"></span>
+                    <span ng-show="user.contact" class="error">Please select a contact method!</span>
                 </p>
             </div>
         </div>
-        <button type="submit">Submit</button>
+        <button type="button" ng-click="reset(form)">Reset</button>
+        <button type="submit" ng-click="update(user)">Save</button>
     </form>
 
     <!-- including scripts -->
     <script src="bower_components/jquery/jquery.min.js"></script>
-    <script src="bower_components/bootstrap/js/bootstrap.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-state/angular-ui-router.js"></script>
+    <script src="bower_components/jquery/file-upload.js"></script>
     <script src="assets/js/app.js"></script>
 </body>
 </html>
