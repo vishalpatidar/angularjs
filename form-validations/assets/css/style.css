@@ -38,9 +38,9 @@ input[type="number"] {
 label[for="address"] {
   float: left;
 }
-[class^="error-"], .asterisk {
+.error, .asterisk {
     color: red;
 }
-#preview {
+.thumb {
     width: 200px;
 }
