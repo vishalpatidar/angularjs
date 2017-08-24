@@ -3,7 +3,8 @@
     // Declare app level module which depends on views, and components
     angular.module('resourceApp', [
         'ui.router',
-        'resourceAppControllers'
+        'resourceAppControllers',
+        'resourceAppDirectives'
     ])
       .config([
         '$stateProvider',
