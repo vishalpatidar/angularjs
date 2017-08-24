@@ -1,0 +1,22 @@
+<section class="container">
+    <div class="content-wrap">
+        <div id="albums" class="clearfix text-center">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-center">S no.</th>
+                        <th class="text-center">Album Title</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="(key, value) in albumResult">
+                        <td>{{value.id}}</td>
+                        <td>{{value.title}}</td>
+                        <td><button class="btn btn-lg btn-success"><a ui-sref="photos({ userId:userId, albumId: value.id })">View</a></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
