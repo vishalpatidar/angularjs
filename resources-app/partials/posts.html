@@ -6,12 +6,7 @@
             <div class="page-links"></div>
             <div id="posts" class="clearfix text-center">
                 <div class='block col-sm-4' id={{'post-'+key}} ng-repeat="(key, value) in postsResult">
-                    <p>{{value.id}}</p>
-                    <h4>{{value.title}}</h4>
-                    <p class='limited-text'>{{value.body}}</p>
-                    <div class='read-more'>
-                        <button class='btn btn-lg btn-success' data-toggle='modal' data-target='#myModal' ng-click="showModel(value.id);">Read More</button>
-                    </div>
+                    <ng-post post-obj="value" single-post="singlePost" comments-obj="commentsObj"></ng-post>
                 </div>
             </div>
 
@@ -28,7 +23,7 @@
                         <div class="modal-body" id="modal-body">{{singlePost.body}}</div>
                         <div class="modal-comments" id="comments">
                             <h4>Comments:</h4>
-                            <blockquote class="wrap" ng-repeat="(key, value) in commentsResult">
+                            <blockquote class="wrap" ng-repeat="(key, value) in commentsObj.result">
                                 <p>{{value.body}}</p>
                                 <p class="pull-right"><i>-{{value.email}}</i></p>
                             </blockquote>
