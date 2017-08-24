@@ -19,23 +19,13 @@
 
         .controller('postsCtrl', [ '$scope', 'resourceService', '$stateParams', function($scope, resourceService, $stateParams) {
             $scope.postsResult = {};
+            $scope.singlePost = {};
+            $scope.commentsObj = {};
 
             resourceService.getResource("posts?userId=" + $stateParams.userId).success(function(data) {
                 $scope.postsResult = angular.fromJson(data);
             });
 
-            $scope.showModel = function(postId) {
-                $scope.singlePost  = {};
-                $scope.commentsResult = {};
-
-                resourceService.getResource("comments/?postId=" + postId).success(function(data) {
-                    $scope.commentsResult = angular.fromJson(data);
-                });
-
-                resourceService.getResource("posts/" + postId).success(function(data) {
-                    $scope.singlePost = angular.fromJson(data);
-                });
-            };
         }])
 
         .controller('albumsCtrl', [ '$scope', 'resourceService', '$stateParams', function($scope, resourceService, $stateParams) {
