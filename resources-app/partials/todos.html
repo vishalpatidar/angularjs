@@ -1,0 +1,38 @@
+<section class="container">
+    <div class="content-wrap">
+        <div id="todos" class="clearfix text-center">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-center">S no.</th>
+                            <th class="text-center">Title</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="(key, value) in todosResult">
+                            <form class="form" name="todoForm{{value.id}}" novalidate>
+                                <td>{{value.id}}</td>
+                                <td>
+                                    <span data-ng-hide="editMode">{{value.title}}</span>
+                                    <input type="text" data-ng-show="editMode" data-ng-model="value.title" ng-required="true" ng-pattern="/[a-zA-Z ][^\d]*/" name="email"/>
+                                </td>
+                                <td>
+                                    <span data-ng-hide="editMode">{{(value.completed) ? "Completed" : "Incomplete"}}</span>
+                                    <select data-ng-show="editMode" data-ng-model="value.completed" ng-options="o.v as o.n for o in [{ n: 'Incomplete', v: false }, { n: 'Completed', v: true }]">
+                                    </select>
+                                </td>
+                                <td>
+                                    <button type="submit" data-ng-hide="editMode" data-ng-click="editMode = true; editTodo(value)" class="btn">Edit</button>
+                                    <button type="submit" data-ng-show="editMode" ng-disabled="todoForm{{value.id}}.$invalid" data-ng-click="editMode = false; saveTodo(value)" class="btn"><span class="glyphicon glyphicon-ok"></span></button>
+                                    <button type="submit" data-ng-show="editMode" data-ng-click="editMode = false; cancel(value)" class="btn"><span class="glyphicon glyphicon-remove"></span></button>
+                                </td>
+                            </form>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
