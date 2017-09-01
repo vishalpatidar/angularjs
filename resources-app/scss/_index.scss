@@ -1,0 +1,29 @@
+body {
+    background-image: $biegeUrl;
+}
+
+@mixin header-footer {
+    background-color: tomato;
+    color: white;
+    min-height: 100px;
+}
+header {
+    @include header-footer;
+    h1 {
+        display: inline-block;
+        margin-top: 0;
+        padding: 20px;
+    }
+}
+
+footer {
+    @include header-footer;
+}
+
+ul.navbar-right {
+    padding-top: 20px;
+}
+
+.container {
+    min-height: 500px;
+}

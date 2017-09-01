@@ -1,0 +1,84 @@
+@import "variables";
+@import "index";
+
+@mixin bg-img($url) {
+    background-image: $url;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.bg-spring {
+    @include bg-img($springUrl);
+}
+
+.bg-winter {
+    @include bg-img($winterUrl);
+}
+
+.flex-div {
+    border-radius: 10%;
+    max-width: 400px;
+    max-height: 400px;
+    margin: 5% 0;
+    width: 350px;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    a {
+        color: #FFFFFF;
+        text-decoration: none;
+        &:hover {
+            color: #A9CC12;
+        }
+    }
+}
+
+.block {
+    height: 250px;
+    padding: 3%;
+    position: relative;
+}
+
+.limited-text {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.read-more {
+    position: absolute;
+    bottom: 10%;
+    left: 25%;
+    right: 25%;
+}
+
+#loading {
+    background-color: rgba(0,0,0,0.3);
+    background-image: url("../images/loading.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: none;
+    height: 100%;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+}
+
+.modal-body {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.modal-comments {
+    padding: 15px;
+}
+
+.photos .col-sm-4 {
+    display: inline-block;
+    float: none;
+    padding-bottom: 30px;
+}
